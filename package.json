@@ -14,8 +14,15 @@
     "qa": "tsx scripts/run_qa.ts",
     "check": "tsx scripts/self_check.ts"
   },
+  "dependencies": {
+    "googleapis": "^144.0.0",
+    "xlsx": "^0.18.5"
+  },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240725.0",
+    "@types/node": "^22.0.0",
     "tsx": "^4.19.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "wrangler": "^3.101.0"
   }
 }
