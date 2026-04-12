@@ -46,7 +46,7 @@ const allWords: string[] = [];
 for (const file of files) {
   const words = parseInputFile(join(inputDir, file));
   console.log(`  Parsed ${words.length} words from ${file}`);
-  allWords.push(...words);
+  for (const w of words) allWords.push(w);
 }
 
 // Preserve input order; remove only blank lines (not duplicates, per contract default)

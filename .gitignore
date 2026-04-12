@@ -1,0 +1,32 @@
+# 환경변수 (절대 커밋 금지)
+.env.local
+.env.*.local
+
+# Node.js
+node_modules/
+dist/
+
+# 중간 산출물 (R2로 업로드 후 불필요)
+output/prepared/
+output/shards/
+output/manifests/
+output/exports/
+output/qa/
+
+# 단, .gitkeep은 유지
+!output/prepared/.gitkeep
+!output/shards/.gitkeep
+!output/manifests/.gitkeep
+!output/exports/.gitkeep
+!output/qa/.gitkeep
+
+# 로그 / 임시 파일
+logs/*.log
+temp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Wrangler
+.wrangler/
