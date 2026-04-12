@@ -1,0 +1,7 @@
+{
+  "initialBatchSize": 20,
+  "maxRetries": 3,
+  "maxBatchesPerScheduledRun": 5,
+  "qaTestWordCountMin": 3,
+  "qaTestWordCountMax": 10
+}

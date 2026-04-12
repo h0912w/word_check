@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "keyword-metrics-collector",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-04-12",
+  "triggers": {
+    "crons": ["*/1 * * * *"]
+  },
+  "r2_buckets": [
+    { "binding": "RESULTS_BUCKET", "bucket_name": "keyword-metrics-results" }
+  ],
+  "d1_databases": [
+    { "binding": "STATE_DB", "database_name": "keyword_metrics_state", "database_id": "REPLACE_ME" }
+  ]
+}

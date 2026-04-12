@@ -1,0 +1,21 @@
+{
+  "name": "keyword-metrics-collector",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bootstrap": "tsx scripts/bootstrap_project.ts",
+    "prepare-input": "tsx scripts/prepare_input.ts",
+    "build-shards": "tsx scripts/build_shards.ts",
+    "bootstrap-storage": "tsx scripts/bootstrap_storage.ts",
+    "export": "tsx scripts/export_results.ts",
+    "publish": "tsx scripts/publish_results.ts",
+    "backfill-sheets": "tsx scripts/backfill_sheets.ts",
+    "qa": "tsx scripts/run_qa.ts",
+    "check": "tsx scripts/self_check.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.8.3"
+  }
+}
