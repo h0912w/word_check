@@ -1,0 +1,9 @@
+{
+  "input_batch_id": "batch_20260412_235047",
+  "source_file": "qa_test.txt",
+  "input_rows": 11,
+  "output_rows": 10,
+  "duplicates_removed": 0,
+  "normalized": true,
+  "created_at": "2026-04-12T14:50:47.103Z"
+}

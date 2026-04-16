@@ -1,0 +1,47 @@
+{
+  "name": "word-check",
+  "version": "1.0.0",
+  "description": "Google Ads historical metrics collection and distribution system",
+  "main": "src/index.ts",
+  "scripts": {
+    "get-oauth-token": "tsx scripts/get_oauth_token.ts",
+    "bootstrap": "tsx scripts/bootstrap_project.ts",
+    "prepare-input": "tsx scripts/prepare_input.ts",
+    "build-shards": "tsx scripts/build_shards.ts",
+    "init-db": "tsx scripts/init_db.ts",
+    "collect-metrics": "tsx scripts/collect_metrics.ts",
+    "export": "tsx scripts/export_results.ts",
+    "publish": "tsx scripts/publish_results.ts",
+    "backfill-sheets": "tsx scripts/backfill_sheets.ts",
+    "qa": "tsx scripts/run_qa.ts",
+    "run-all": "npm run collect-metrics && npm run export && npm run publish",
+    "health": "tsx scripts/health_check.ts",
+    "schedule": "tsx scripts/schedule.ts",
+    "task-done": "tsx scripts/update_task_progress.ts complete"
+  },
+  "keywords": [
+    "google-ads",
+    "keyword-metrics",
+    "cloudflare-workers"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/node-cron": "^3.0.11",
+    "@types/xlsx": "^0.0.36",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "axios": "^1.15.0",
+    "csv-parse": "^5.5.6",
+    "dotenv": "^16.4.7",
+    "google-ads-node": "^23.0.0",
+    "google-auth-library": "^9.15.0",
+    "googleapis": "^144.0.0",
+    "node-cron": "^3.0.3",
+    "sql.js": "^1.14.1",
+    "xlsx": "^0.18.5"
+  }
+}

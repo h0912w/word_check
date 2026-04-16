@@ -1,0 +1,17 @@
+# Cloud Build ignore files
+node_modules
+npm-debug.log
+dist
+.env.local
+.env.*.local
+.git
+.gitignore
+README.md
+.vscode
+.idea
+*.log
+output
+logs
+temp
+.cache
+.wrangler

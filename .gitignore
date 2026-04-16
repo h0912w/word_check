@@ -1,0 +1,38 @@
+# Environment variables (sensitive)
+.env.local
+.env
+
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+.wrangler/
+
+# Local data files
+data/*.db
+data/*.db-shm
+data/*.db-wal
+temp/
+
+# Logs
+logs/
+*.log
+
+# Local config files
+.dev.vars
+config/secrets/
+
+# Output files (optional - comment out if you want to track exports)
+# output/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

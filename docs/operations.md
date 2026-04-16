@@ -20,11 +20,37 @@
 2. 현재 offset부터 N개 로드
 3. quotaGuard 검사
 4. free_tier_guard 검사
-5. Google Ads API 호출
+5. Google Ads API 호출 (또는 Mock API)
 6. 응답 정규화
 7. 결과 저장
 8. offset 갱신
 9. shard 끝이면 `done`
+
+### 3.1 테스트 모드 실행
+
+Google Ads API 승인 대기 중인 경우, **Mock API 모드**를 사용할 수 있습니다.
+
+#### 활성화
+```bash
+# .env.local 파일
+USE_MOCK_API=true
+```
+
+#### Mock API 동작
+- 실제 API를 호출하지 않음
+- 무작위 테스트 데이터 반환
+- API quota/승인 불필요
+- 전체 파이프라인 테스트 가능
+
+#### 실행
+```bash
+npm run collect-metrics  # Mock 모드로 실행
+```
+
+#### Mock 데이터 예시
+- avg_monthly_searches: 1000~100000 (무작위)
+- competition: LOW, MEDIUM, HIGH
+- competition_index: 10, 50, 90
 
 ## 4. 실패 처리 정책
 ### 4.1 자동 재시도

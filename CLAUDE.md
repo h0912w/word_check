@@ -1,11 +1,11 @@
 # CLAUDE.md
 
 ## 프로젝트 정의
-이 프로젝트는 영어 단어 목록 파일을 입력으로 받아, Google Ads historical metrics를 수집하고, 검색량·경쟁강도 결과를 날짜별 CSV/XLSX로 내보낸 뒤 Google Drive와 Google Sheets에 동시 배포하는 서버 기반 배치 처리 시스템이다.
+이 프로젝트는 영어 단어 목록 파일을 입력으로 받아, Google Ads historical metrics를 수집하고, 검색량·경쟁강도 결과를 날짜별 CSV/XLSX로 내보낸 뒤 Google Drive와 Google Sheets에 동시 배포하는 **로컬 실행 배치 처리 시스템**이다.
 
 ## 최상위 목표
 1. 입력 단어를 변형하지 않고 그대로 수집 대상에 사용한다.
-2. 사용자 PC 상태와 무관하게 서버에서 작업이 계속 이어지게 만든다.
+2. 로컬 PC에서 `npm run` 명령어로 즉시 실행 가능한 구조로 만든다.
 3. 최종 산출물은 사용자가 바로 확인 가능한 CSV/XLSX와 Google Drive/Sheets 반영 결과여야 한다.
 4. GitHub 저장소를 clone 또는 다운로드한 직후 Claude Code CLI에서 추가 구조 보정 없이 바로 이해·작업 가능한 저장소를 만든다.
 
@@ -79,14 +79,13 @@
 1. 저장소 bootstrap
 2. 입력 수집 및 정규화
 3. shard 분할 및 manifest 생성
-4. Google Drive 업로드 및 D1 상태 등록
-5. Cron 기반 batch 실행
-6. Google Ads API 호출 및 응답 정규화
-7. 결과 저장
-8. 최종 집계 및 CSV/XLSX export
-9. Google Drive + Google Sheets 배포
-10. Drive/Sheets 건수 대조 및 backfill 검증
-11. QA 실행
+4. 로컬 batch 실행 (npm run collect-metrics)
+5. Google Ads API 직접 호출 및 응답 정규화
+6. 결과 저장 (SQLite DB + JSON 백업)
+7. 최종 집계 및 CSV/XLSX export (npm run export)
+8. Google Drive + Google Sheets 배포 (npm run publish)
+9. Drive/Sheets 건수 대조 및 backfill 검증
+10. QA 실행 (npm run qa)
 
 상세 절차는 `docs/architecture.md`, `docs/operations.md`, `docs/qa-plan.md`를 따른다.
 
@@ -114,25 +113,25 @@
 
 ## 저장소 구조 규칙
 반드시 아래 디렉터리를 저장소에 포함한다.
-- `input/`
-- `output/prepared/`
-- `output/shards/`
-- `output/exports/`
-- `output/qa/`
-- `logs/`
-- `temp/`
-- `config/`
-- `scripts/`
-- `src/`
-- `docs/`
-- `docs/references/`
+- `input/` - 입력 파일
+- `data/` - 로컬 데이터베이스 및 상태 파일
+- `output/prepared/` - 정규화된 출력
+- `output/shards/` - 분할된 shard 파일
+- `output/exports/` - CSV/XLSX 내보내기
+- `output/qa/` - QA 결과
+- `logs/` - 실행 로그
+- `temp/` - 임시 파일
+- `config/` - 설정 파일
+- `scripts/` - 실행 스크립트
+- `src/` - 소스 코드
+- `docs/` - 문서
+- `docs/references/` - 서비스별 참조 문서
 
 루트 필수 파일:
-- `CLAUDE.md`
-- `package.json`
-- `wrangler.jsonc`
-- `.env.example`
-- `tsconfig.json`
+- `CLAUDE.md` - 프로젝트 정의
+- `package.json` - 의존성 및 스크립트
+- `.env.example` - 환경변수 템플릿
+- `tsconfig.json` - TypeScript 설정
 
 누락되기 쉬운 빈 디렉터리는 `.gitkeep`로 버전관리한다.
 
@@ -141,9 +140,9 @@
 - 핵심 계약을 깨는 구조 개편은 금지한다.
 - 테스트 없이 핵심 로직을 교체하지 않는다.
 - 출력 헤더명, 열 순서, 파일명 규칙은 명시적 요구 없이는 변경하지 않는다.
-- HTTP 핸들러와 Cron orchestration은 분리한다.
-- Cron은 orchestration만 담당하고, 실제 로직은 별도 모듈에 둔다.
-- 상태 저장과 결과 저장의 순서를 명확히 유지해 재실행 안전성을 확보한다.
+- **배포 불필요**: 로컬에서 `npm run`으로 실행한다.
+- Google Ads API는 google-ads-node 라이브러리로 직접 호출한다.
+- 상태 저장은 SQLite DB와 JSON 파일로 한다.
 - CSV는 항상 우선 보존하고, XLSX 실패 시 별도 재시도 가능 구조로 둔다.
 
 ## 무료 사용량/과금 방지 규칙
@@ -171,7 +170,12 @@
 
 상태 전이는 임의 확장하지 말고 문서와 코드 모두 동기화한다.
 
-## 배포 규칙
+## 실행 규칙
+- `npm run collect-metrics` - Google Ads 데이터 수집
+- `npm run export` - CSV/XLSX 내보내기
+- `npm run publish` - Google Drive/Sheets 배포
+- `npm run qa` - QA 실행
+- `npm run run-all` - 전체 파이프라인 실행
 - 날짜 포함 파일명으로 CSV/XLSX를 생성한다.
 - Google Drive 원본 보관 폴더 업로드 성공 여부를 기록한다.
 - Google Sheets append/upsert 성공 여부를 기록한다.
@@ -181,7 +185,7 @@
 ## QA 규칙
 - QA 전용 별도 앱/서비스 금지
 - 실제 사용자 파이프라인과 동일 경로 사용
-- 테스트 입력은 3~10개 단어 중심의 소량 샘플 사용
+- 테스트 입력은 10개 단어로 고정 사용
 - 문서 변경 시 경량 QA, 코드/설정 변경 시 전체 E2E QA 수행
 - QA 결과는 `output/qa/qa_report.md`, `output/qa/qa_result.json`에 남긴다.
 - QA는 신규 디렉터리 clone → bootstrap → 실행 재현까지 검증해야 한다.
@@ -208,8 +212,9 @@
 6. 원본 설계서 대비 누락 0% 더블체크가 끝난다.
 
 ## 참조 문서
+- 작업 진행 상태: `docs/task-progress.md` ⭐ **Claude 시작 시 먼저 확인**
 - 전체 구조: `docs/architecture.md`
-- 배포/환경: `docs/deployment.md`
+- 실행 환경 설정: `docs/setup.md`
 - 운영/실패 처리: `docs/operations.md`
 - QA 기준: `docs/qa-plan.md`
 - 한도/과금 방지: `docs/limits.md`

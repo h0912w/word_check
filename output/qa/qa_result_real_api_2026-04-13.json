@@ -1,0 +1,222 @@
+{
+  "timestamp": "2026-04-13T23:15:25.861Z",
+  "overall_status": "fail",
+  "total_checks": 41,
+  "passed_checks": 39,
+  "failed_checks": 2,
+  "checks": [
+    {
+      "name": "Directory exists: input/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: output/prepared/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: output/shards/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: output/exports/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: output/qa/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: logs/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: temp/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: config/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: scripts/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: src/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: docs/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: data/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "File exists: CLAUDE.md",
+      "status": "pass",
+      "details": "File found"
+    },
+    {
+      "name": "File exists: package.json",
+      "status": "pass",
+      "details": "File found"
+    },
+    {
+      "name": "File exists: tsconfig.json",
+      "status": "pass",
+      "details": "File found"
+    },
+    {
+      "name": "File exists: .env.example",
+      "status": "pass",
+      "details": "File found"
+    },
+    {
+      "name": "File exists: config/schema.sql",
+      "status": "pass",
+      "details": "File found"
+    },
+    {
+      "name": ".env.local exists",
+      "status": "pass",
+      "details": ".env.local found"
+    },
+    {
+      "name": "Env var: GOOGLE_ADS_DEVELOPER_TOKEN",
+      "status": "pass",
+      "details": "GOOGLE_ADS_DEVELOPER_TOKEN is set"
+    },
+    {
+      "name": "Env var: GOOGLE_ADS_CUSTOMER_ID",
+      "status": "pass",
+      "details": "GOOGLE_ADS_CUSTOMER_ID is set"
+    },
+    {
+      "name": "Env var: GOOGLE_ADS_CLIENT_ID",
+      "status": "pass",
+      "details": "GOOGLE_ADS_CLIENT_ID is set"
+    },
+    {
+      "name": "Env var: GOOGLE_ADS_CLIENT_SECRET",
+      "status": "pass",
+      "details": "GOOGLE_ADS_CLIENT_SECRET is set"
+    },
+    {
+      "name": "Env var: GOOGLE_ADS_REFRESH_TOKEN",
+      "status": "pass",
+      "details": "GOOGLE_ADS_REFRESH_TOKEN is set"
+    },
+    {
+      "name": "Test input file exists",
+      "status": "pass",
+      "details": "Found qa_test.txt with 10 words"
+    },
+    {
+      "name": "prepare-input completed",
+      "status": "pass",
+      "details": "Input normalization successful"
+    },
+    {
+      "name": "build-shards completed",
+      "status": "pass",
+      "details": "Shard creation successful"
+    },
+    {
+      "name": "Manifest created",
+      "status": "pass",
+      "details": "Manifest with 2 shards, 10 rows"
+    },
+    {
+      "name": "Database reinitialized",
+      "status": "pass",
+      "details": "Clean database created"
+    },
+    {
+      "name": "bootstrap-storage completed",
+      "status": "pass",
+      "details": "SQLite database initialized successfully"
+    },
+    {
+      "name": "collect-metrics completed",
+      "status": "pass",
+      "details": "Metrics collected successfully with real Google Ads API"
+    },
+    {
+      "name": "export completed",
+      "status": "pass",
+      "details": "Export successful"
+    },
+    {
+      "name": "CSV export exists",
+      "status": "pass",
+      "details": "Found keyword_metrics_2026-04-14.csv"
+    },
+    {
+      "name": "XLSX export exists",
+      "status": "pass",
+      "details": "Found keyword_metrics_2026-04-14.xlsx"
+    },
+    {
+      "name": "CSV has header and data",
+      "status": "fail",
+      "details": "CSV has only 1 lines"
+    },
+    {
+      "name": "Records in export",
+      "status": "fail",
+      "details": "Found 0 records",
+      "expected": ">= 1",
+      "actual": "0"
+    },
+    {
+      "name": "Schema has table: input_batches",
+      "status": "pass",
+      "details": "Table input_batches defined"
+    },
+    {
+      "name": "Schema has table: shards",
+      "status": "pass",
+      "details": "Table shards defined"
+    },
+    {
+      "name": "Schema has table: batch_runs",
+      "status": "pass",
+      "details": "Table batch_runs defined"
+    },
+    {
+      "name": "Schema has table: export_jobs",
+      "status": "pass",
+      "details": "Table export_jobs defined"
+    },
+    {
+      "name": "Schema has table: publish_jobs",
+      "status": "pass",
+      "details": "Table publish_jobs defined"
+    },
+    {
+      "name": "Schema has table: keyword_results",
+      "status": "pass",
+      "details": "Table keyword_results defined"
+    }
+  ],
+  "export_csv_exists": true,
+  "export_xlsx_exists": true,
+  "required_columns_exist": false,
+  "at_least_one_success_record": true,
+  "records_count": 0,
+  "failed_records_count": 0
+}

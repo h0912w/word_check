@@ -1,0 +1,33 @@
+services:
+  # Proxy Server Service
+  - type: web
+    name: word-check-proxy
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm run build:server
+    startCommand: node server/dist/google-ads-server.js
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: NODE_ENV
+        value: production
+      - key: GOOGLE_ADS_DEVELOPER_TOKEN
+        sync: false
+      - key: GOOGLE_ADS_CUSTOMER_ID
+        sync: false
+      - key: GOOGLE_ADS_LOGIN_CUSTOMER_ID
+        sync: false
+      - key: GOOGLE_ADS_CLIENT_ID
+        sync: false
+      - key: GOOGLE_ADS_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_ADS_REFRESH_TOKEN
+        sync: false
+      - key: API_SECRET
+        sync: false
+      - key: WORKER_DOMAIN
+        value: "*.workers.dev"
+      - key: ALLOWED_ORIGINS
+        value: "*.workers.dev"
+    healthCheckPath: /health

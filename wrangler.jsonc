@@ -1,0 +1,32 @@
+{
+  "name": "word-check",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-09-23",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "word_check_db",
+      "database_id": "9938323a-0c74-45a8-b6b3-fa412c822014",
+      "migrations_dir": "config/migrations"
+    }
+  ],
+  "triggers": {
+    "crons": ["*/1 * * * *"]
+  },
+  "vars": {
+    "ENVIRONMENT": "production",
+    "BATCH_SIZE": "10",
+    "MAX_RETRY_COUNT": "3",
+    "FREE_TIER_WORKER_BUDGET": "10000",
+    "FREE_TIER_ADS_BUDGET": "1000",
+    "FREE_TIER_DRIVE_BUDGET": "100",
+    "FREE_TIER_SHEETS_BUDGET": "50",
+    "DRIVE_STORAGE_THRESHOLD_MB": "100",
+    "GOOGLE_ADS_GEO_TARGET_CONSTANTS": "geoTargetConstants/2840",
+    "GOOGLE_ADS_LANGUAGE": "languageConstants/1000",
+    "GOOGLE_ADS_KEYWORD_PLAN_NETWORK": "GOOGLE_SEARCH",
+    "PROXY_SERVER_URL": "https://word-check-production.up.railway.app",
+    "PROXY_API_SECRET": "@PROXY_API_SECRET"
+  }
+}

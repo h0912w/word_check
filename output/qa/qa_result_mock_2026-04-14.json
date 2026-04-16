@@ -1,0 +1,202 @@
+{
+  "timestamp": "2026-04-14T14:26:16.534Z",
+  "overall_status": "pass",
+  "total_checks": 37,
+  "passed_checks": 37,
+  "failed_checks": 0,
+  "checks": [
+    {
+      "name": "Directory exists: input/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: output/prepared/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: output/shards/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: output/exports/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: output/qa/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: logs/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: temp/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: config/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: scripts/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: src/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: docs/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "Directory exists: data/",
+      "status": "pass",
+      "details": "Directory found"
+    },
+    {
+      "name": "File exists: CLAUDE.md",
+      "status": "pass",
+      "details": "File found"
+    },
+    {
+      "name": "File exists: package.json",
+      "status": "pass",
+      "details": "File found"
+    },
+    {
+      "name": "File exists: tsconfig.json",
+      "status": "pass",
+      "details": "File found"
+    },
+    {
+      "name": "File exists: .env.example",
+      "status": "pass",
+      "details": "File found"
+    },
+    {
+      "name": "File exists: config/schema.sql",
+      "status": "pass",
+      "details": "File found"
+    },
+    {
+      "name": ".env.local exists",
+      "status": "pass",
+      "details": ".env.local found"
+    },
+    {
+      "name": "Test input file exists",
+      "status": "pass",
+      "details": "Found qa_test.txt with 10 words"
+    },
+    {
+      "name": "prepare-input completed",
+      "status": "pass",
+      "details": "Input normalization successful"
+    },
+    {
+      "name": "build-shards completed",
+      "status": "pass",
+      "details": "Shard creation successful"
+    },
+    {
+      "name": "Manifest created",
+      "status": "pass",
+      "details": "Manifest with 2 shards, 10 rows"
+    },
+    {
+      "name": "Database reinitialized",
+      "status": "pass",
+      "details": "Clean database created"
+    },
+    {
+      "name": "bootstrap-storage completed",
+      "status": "pass",
+      "details": "SQLite database initialized successfully"
+    },
+    {
+      "name": "collect-metrics completed",
+      "status": "pass",
+      "details": "Metrics collected successfully with mock API"
+    },
+    {
+      "name": "export completed",
+      "status": "pass",
+      "details": "Export successful"
+    },
+    {
+      "name": "CSV export exists",
+      "status": "pass",
+      "details": "Found keyword_metrics_2026-04-14.csv"
+    },
+    {
+      "name": "XLSX export exists",
+      "status": "pass",
+      "details": "Found keyword_metrics_2026-04-14.xlsx"
+    },
+    {
+      "name": "CSV has all required columns",
+      "status": "pass",
+      "details": "All 13 columns present"
+    },
+    {
+      "name": "Records in export",
+      "status": "pass",
+      "details": "Found 10 records",
+      "expected": ">= 1",
+      "actual": "10"
+    },
+    {
+      "name": "row_key can be constructed",
+      "status": "pass",
+      "details": "Can construct row_key: \"August\"\":825|\"July\"\":985|\"May\"\":1081|\"June\"\":715|..."
+    },
+    {
+      "name": "Schema has table: input_batches",
+      "status": "pass",
+      "details": "Table input_batches defined"
+    },
+    {
+      "name": "Schema has table: shards",
+      "status": "pass",
+      "details": "Table shards defined"
+    },
+    {
+      "name": "Schema has table: batch_runs",
+      "status": "pass",
+      "details": "Table batch_runs defined"
+    },
+    {
+      "name": "Schema has table: export_jobs",
+      "status": "pass",
+      "details": "Table export_jobs defined"
+    },
+    {
+      "name": "Schema has table: publish_jobs",
+      "status": "pass",
+      "details": "Table publish_jobs defined"
+    },
+    {
+      "name": "Schema has table: keyword_results",
+      "status": "pass",
+      "details": "Table keyword_results defined"
+    }
+  ],
+  "export_csv_exists": true,
+  "export_xlsx_exists": true,
+  "required_columns_exist": true,
+  "at_least_one_success_record": true,
+  "records_count": 10,
+  "failed_records_count": 0
+}
