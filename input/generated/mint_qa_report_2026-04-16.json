@@ -1,0 +1,11 @@
+{
+  "totalWords": 1000,
+  "passed": 956,
+  "failed": 44,
+  "passRate": 95.6,
+  "averageScore": 98.9,
+  "failureReasons": {
+    "SaaS 제목에 적합하지 않습니다": 44
+  },
+  "timestamp": "2026-04-16T12:03:15.376Z"
+}

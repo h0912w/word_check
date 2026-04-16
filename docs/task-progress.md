@@ -6,16 +6,31 @@
 
 ---
 
-## 최신 작업 (2026-04-16) - 대규모 단어 처리 시작
+## 최신 작업 (2026-04-16) - 인터넷 단어 수집 기능 추가
 
 ### 오늘의 주요 성과
-- ✅ **전체 466,550 단어 처리 시작** (120,001단어 완료, 진행률 25.7%)
-- ✅ **API 제한 확인 및 최적화 완료**
-- ✅ **Shard 완전 처리 로직 구현** (while 루프)
-- ✅ **할당량 계산 수정** (API 호출 수 기준)
-- ✅ **주기적 export 자동화** (collect-and-export.sh)
+- ✅ **인터넷 실제 단어 수집 방법론 추가** (word-generation-architecture.md)
+- ✅ **단어 수집 스크립트 구현** (collect_words.ts)
+- ✅ **실제 SaaS 단어 7,605개 수집 완료** (WebSearch 기반)
+- ✅ **QA 테스트 통과율 95.9% 달성** (7,289개 통과)
+- ✅ **명령어 이름 확정** (mint, grade, collect)
+- ✅ **CLAUDE.md에 인터넷 수집 방법론 추가**
+- ✅ **package.json에 collect 스크립트 추가**
 
-### 완료된 작업 내역
+### 인터넷 단어 수집 특징
+- **실제 SaaS 제품/서비스 이름**: Salesforce, HubSpot, Shopify, AWS 등
+- **카테고리별 분류**: CRM, 마케팅, 프로젝트 관리, 커뮤니케이션 등
+- **지역별 서비스 포함**: 한국 (Naver, Kakao), 글로벌 (AWS, Azure)
+- **품질 검증**: QA 통과율 95.9%, 평균 점수 98.1점
+- **실행 조건**: Claude Code 세션 내에서만 실행 (생산 런타임 비LLM 원칙 유지)
+
+### 완료된 작업 내역 (이전)
+- ✅ 단어 생성 기능 설계 완료 (word-generation-architecture.md)
+- ✅ 단어 생성 프레임워크 구현 (generate_words.ts, qa_words.ts)
+- ✅ 중복 제거 엔진 구현 (deduplication.ts)
+- ✅ 단어 검증기 구현 (validator.ts)
+- ✅ 타입 정의 완료 (types.ts)
+- ✅ input/generated/ 디렉터리 구조 추가
 - ✅ better-sqlite3 → sql.js 마이그레이션 완료
 - ✅ Mock Google Ads API 클라이언트 구현
 - ✅ QA 스크립트 로컬 실행 환경으로 수정
@@ -37,11 +52,10 @@
 - ✅ **CSV/XLSX export 완료** (2026-04-16)
 
 ### 오늘 해결한 주요 문제
-1. **API 제한 확인**: `generateKeywordIdeas`는 최대 20 키워드/요청
-2. **배치 크기 설정**: BATCH_SIZE=20 (API 최대값)
-3. **Shard 완전 처리**: 각 shard 100단어를 모두 처리하도록 while 루프 추가
-4. **할당량 계산 수정**: 키워드 수 기준 → API 호출 수 기준 (1회 호출 = 1)
-5. **주기적 export**: 각 배치 완료 후 자동 export 실행
+1. **인터넷 단어 수집 방법론**: WebSearch로 실제 SaaS 단어 수집
+2. **품질 검증**: QA 통과율 95.9% 달성
+3. **카테고리별 분류**: 17개 카테고리로 체계적 분류
+4. **명령어 체계**: mint, grade, collect 명령어 확정
 
 ### 테스트 계정 권한 설정 방법 (노하u)
 1. 테스트 계정(890-341-2348)으로 로그인

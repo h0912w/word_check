@@ -11,13 +11,64 @@
 
 ## 범위 밖
 - 단어 의미 해석
-- 동의어/파생어/조합 생성
+- 동의어/파생어/조합 생성 (자동화)
 - SEO 적합성 판단
 - 검색량 기반 사업성 평가
 - 추천 시스템
 - 사용자용 대시보드
 - 전면 UI 재설계
-- 런타임 LLM 호출 의존 구조
+- 런타임 LLM 호출 의존 구조 (생산 파이프라인)
+
+## 단어 생성 기능 (런타임 비LLM 예외)
+
+### 목적
+사용자가 **Claude Code 세션에서 명시적으로 요청할 때만** SaaS 제목용 영어 단어를 생성한다.
+
+### 실행 조건
+- **Claude Code 세션 내에서만 실행**: 사용자가 직접 Claude Code를 실행하고 요청해야 작동
+- **명시적 요청 필요**: 자동화된 배치 작업의 일부로 실행되지 않음
+- **생산 런타임 비의존**: Google Ads 수집 파이프라인은 여전히 LLM 비의존 구조 유지
+
+### 워크플로우
+
+#### 방법 1: 인터넷 실제 단어 수집 (권장) ⭐
+1. 사용자가 Claude Code에 단어 수집 요청
+2. WebSearch로 SaaS 관련 단어 검색 (실제 제품/서비스 이름)
+3. 실제 제품/서비스 이름 추출 및 정규화
+4. 카테고리별 분류
+5. 중복 검증 및 QA 수행
+6. `input/generated/`에 최종 단어 저장
+
+#### 방법 2: 다중 에이전트 생성
+1. 사용자가 Claude Code 세션에서 단어 생성 요청
+2. Claude Code가 카테고리별 전문 에이전트로 단어 생성
+3. 중복 검증 및 QA 수행
+4. `input/generated/`에 최종 단어 저장
+
+### 실행 명령어
+```bash
+# 단어 수집 (인터넷 실제 단어) - 권장
+npm run collect
+
+# 단어 생성 (에이전트 기반)
+npm run mint
+
+# 품질 검증
+npm run grade
+```
+
+### 생성/수집 규칙
+- **영어 단어만**: a-z, A-Z, 0-9, 하이픈(-)만 허용
+- **SaaS 제목용**: 상업적 서비스 제목에 적합한 단어
+- **실제 사용 단어 우선**: 인터넷에서 수집한 실제 SaaS 제품/서비스 이름
+- **중복 방지**: 기존 input/ 파일과 비교하여 중복 제거
+- **QA 에이전트**: 별도 품질 검증 시스템 (70점 이상 통과)
+
+### QA
+- 단어 생성 작업용 별도 QA 에이전트 운영
+- 코드 변경 시: 전체 E2E QA
+- 카테고리 추가 시: 경량 QA
+- 상세: `docs/word-generation-architecture.md`
 
 ## 우선순위
 1. 원본 설계 요구 누락 0%
@@ -96,6 +147,9 @@
 | 배포 구조 선택 | LLM(main-orchestrator) |
 | 오류 원인 해석 | LLM(main-orchestrator / qa-executor / ops-reviewer) |
 | 설정값 조정 제안 | LLM |
+| 단어 생성 (Claude Code 세션) | LLM(word-generation-agents) |
+| 단어 생성 QA | LLM(qa-agent) |
+| 중복 검증 | 스크립트 |
 | 입력 파일 파싱 | 스크립트 |
 | shard 분할 | 스크립트 |
 | Google Ads API 호출 | 스크립트 |
@@ -114,6 +168,7 @@
 ## 저장소 구조 규칙
 반드시 아래 디렉터리를 저장소에 포함한다.
 - `input/` - 입력 파일
+- `input/generated/` - Claude Code 세션에서 생성된 단어 저장소
 - `data/` - 로컬 데이터베이스 및 상태 파일
 - `output/prepared/` - 정규화된 출력
 - `output/shards/` - 분할된 shard 파일
@@ -218,4 +273,5 @@
 - 운영/실패 처리: `docs/operations.md`
 - QA 기준: `docs/qa-plan.md`
 - 한도/과금 방지: `docs/limits.md`
+- 단어 생성 기능: `docs/word-generation-architecture.md`
 - 서비스별 구현 규칙: `docs/references/*.md`

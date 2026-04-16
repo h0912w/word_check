@@ -17,7 +17,11 @@
     "run-all": "npm run collect-metrics && npm run export && npm run publish",
     "health": "tsx scripts/health_check.ts",
     "schedule": "tsx scripts/schedule.ts",
-    "task-done": "tsx scripts/update_task_progress.ts complete"
+    "task-done": "tsx scripts/update_task_progress.ts complete",
+    "mint": "tsx scripts/generate_words.ts",
+    "mint-dedup": "tsx scripts/mint_words_dedup.ts",
+    "grade": "tsx scripts/qa_words.ts",
+    "collect": "tsx scripts/collect_words.ts"
   },
   "keywords": [
     "google-ads",
